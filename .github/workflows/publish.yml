@@ -1,0 +1,73 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+    paths: ['registry/**']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── 1. 变更包检测 ──
+      - name: Detect changed packages
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^registry/' | cut -d/ -f1-2 | sort -u || true)
+          echo "CHANGED=$CHANGED"
+          echo "pkgs=$CHANGED" >> "$GITHUB_OUTPUT"
+          if [ -z "$CHANGED" ]; then
+            echo "registry 无变更，退出"
+            exit 0
+          fi
+
+      # ── 2. 逐包打包 + 建 Release + 汇总元数据 ──
+      - name: Build and release packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PKGS: ${{ steps.changed.outputs.pkgs }}
+        run: |
+          mkdir -p dist /tmp/meta
+          for pkg in $PKGS; do
+            VER=$(python3 -c "
+import tomllib
+m = tomllib.load(open('registry/$pkg/manifest.toml','rb'))
+print(m['version'])")
+            TAG="$pkg-$VER"
+            echo "=== 打包 $pkg -> $TAG ==="
+            python3 scripts/build_package.py "registry/$pkg" --out dist --release-tag "$TAG" \
+              --repo "${{ github.repository }}" > "/tmp/meta/$pkg.json"
+            if gh release view "$TAG" >/dev/null 2>&1; then
+              echo "⚠️ Release $TAG 已存在（版本重复？），跳过创建"
+            else
+              gh release create "$TAG" "dist/$pkg-$VER.zip" --title "$TAG" --notes "由 AI 审核流水线自动发布"
+            fi
+          done
+
+      # ── 3. 更新 plugins.json ──
+      - name: Update registry
+        env:
+          PKGS: ${{ steps.changed.outputs.pkgs }}
+        run: |
+          for pkg in $PKGS; do
+            python3 scripts/update_registry.py --meta "/tmp/meta/$pkg.json" \
+              --review-report-url "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+          done
+
+      # ── 4. 提交 plugins.json（[skip ci] 防止递归触发）──
+      - name: Commit registry
+        env:
+          PKGS: ${{ steps.changed.outputs.pkgs }}
+        run: |
+          git config user.name "market-bot[bot]"
+          git config user.email "market-bot[bot]@users.noreply.github.com"
+          git add plugins.json
+          git commit -m "chore: update plugins.json [skip ci]" || echo "plugins.json 无变化"
+          git push

@@ -1,0 +1,132 @@
+name: AI Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  statuses: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── 1. 变更包检测（只审 PR 实际改动的包）──
+      - name: Detect changed packages
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^registry/' | cut -d/ -f1-2 | sort -u | tr '\n' ' ' || true)
+          echo "CHANGED=$CHANGED"
+          echo "pkgs=$CHANGED" >> "$GITHUB_OUTPUT"
+          if [ -z "$CHANGED" ]; then
+            echo "registry 无变更，无需审核"
+          fi
+
+      # ── 2. 机器检查（一票否决规则集，零 LLM 成本）──
+      - name: Machine check
+        id: machine
+        env:
+          PKGS: ${{ steps.changed.outputs.pkgs }}
+        run: |
+          set +e
+          PKG_ARGS=""
+          if [ -n "$PKGS" ]; then PKG_ARGS="--pkgs $PKGS"; fi
+          python3 scripts/check_pr.py registry/ --base-plugins plugins.json $PKG_ARGS --json-out /tmp/review-machine.json
+          echo "MACHINE_RC=$?" >> "$GITHUB_ENV"
+          # 生成门禁用摘要
+          python3 - <<'EOF'
+          import json
+          r = json.load(open("/tmp/review-machine.json"))
+          lines = ["### 🤖 机器检查结果",
+                   f"- **verdict: {r['verdict']}**（error {r['machine']['error_count']} / warn {r['machine']['warn_count']}）"]
+          for f in r["findings"][:30]:
+              lines.append(f"- [{f['severity']}] `{f['rule']}` {f['file']}:{f['line']} — {f['detail']}")
+          if len(r["findings"]) > 30:
+              lines.append(f"- …另有 {len(r['findings'])-30} 条")
+          open("/tmp/machine-comment.md", "w").write("\n".join(lines))
+          EOF
+          exit 0
+
+      # ── 3. 机器未通过 → 关 PR ──
+      - name: Reject on machine failure
+        if: env.MACHINE_RC == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "" >> /tmp/machine-comment.md
+          echo "> 一票否决规则命中，PR 已自动关闭。修复后重新提交（push 会重新触发审核）。" >> /tmp/machine-comment.md
+          gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/machine-comment.md
+          gh pr close "${{ github.event.pull_request.number }}"
+          exit 0
+
+      # ── 4. LLM 语义审查（硅基流动，结构化 verdict，fail-closed）──
+      - name: LLM semantic review
+        if: env.MACHINE_RC == '0'
+        id: llm
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          PKGS: ${{ steps.changed.outputs.pkgs }}
+        run: |
+          set +e
+          PKG_ARGS=""
+          if [ -n "$PKGS" ]; then PKG_ARGS="--pkgs $PKGS"; fi
+          python3 scripts/review_llm.py registry/ /tmp/review-machine.json $PKG_ARGS --json-out /tmp/review-llm.json
+          echo "LLM_RC=$?" >> "$GITHUB_ENV"
+          echo "VERDICT=$(python3 -c "import json;print(json.load(open('/tmp/review-llm.json'))['verdict'])" 2>/dev/null || echo pending)" >> "$GITHUB_ENV"
+          python3 - <<'EOF'
+          import json
+          r = json.load(open("/tmp/review-llm.json"))
+          lines = ["### 🧠 LLM 语义审查",
+                   f"- **verdict: {r.get('verdict')}** / risk: {r.get('risk_level')}",
+                   f"- {r.get('summary','')}"]
+          for f in r.get("findings", [])[:30]:
+              lines.append(f"- [{f.get('severity')}] `{f.get('category')}` {f.get('file','')}:{f.get('line',0)} — {f.get('detail','')}")
+          open("/tmp/llm-comment.md", "w").write("\n".join(lines))
+          EOF
+          exit 0
+
+      # ── 5. 门禁决策 ──
+      - name: Gate: approve → auto merge
+        if: env.MACHINE_RC == '0' && env.VERDICT == 'approve'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge "${{ github.event.pull_request.number }}" --squash --delete-branch
+          gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
+            -f state=success -f context="ai-review" -f description="AI 审核通过，已合并"
+
+      - name: Gate: changes → comment and wait
+        if: env.MACHINE_RC == '0' && env.VERDICT == 'changes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "" >> /tmp/llm-comment.md
+          echo "> 请按 findings 修改后重新 push，将自动重新审核。" >> /tmp/llm-comment.md
+          gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/llm-comment.md
+
+      - name: Gate: reject → close PR
+        if: env.MACHINE_RC == '0' && env.VERDICT == 'reject'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "" >> /tmp/llm-comment.md
+          echo "> 审核判定为恶意/严重违规，PR 已自动关闭。" >> /tmp/llm-comment.md
+          gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/llm-comment.md
+          gh pr close "${{ github.event.pull_request.number }}"
+
+      - name: Gate: pending → hold for human (fail-closed)
+        if: env.MACHINE_RC == '0' && env.VERDICT == 'pending'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "> ⚠️ AI 审核无法完成（API 失败/输出不可解析），**fail-closed：PR 挂起等人工复核**，不会被自动合并。" >> /tmp/llm-comment.md
+          gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/llm-comment.md
