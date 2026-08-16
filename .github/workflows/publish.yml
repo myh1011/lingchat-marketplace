@@ -36,10 +36,7 @@ jobs:
         run: |
           mkdir -p dist /tmp/meta
           for pkg in $PKGS; do
-            VER=$(python3 -c "
-import tomllib
-m = tomllib.load(open('registry/$pkg/manifest.toml','rb'))
-print(m['version'])")
+            VER=$(python3 -c "import tomllib; print(tomllib.load(open('registry/$pkg/manifest.toml','rb'))['version'])")
             TAG="$pkg-$VER"
             echo "=== 打包 $pkg -> $TAG ==="
             python3 scripts/build_package.py "registry/$pkg" --out dist --release-tag "$TAG" \
