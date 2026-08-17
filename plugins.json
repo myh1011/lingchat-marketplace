@@ -86,6 +86,35 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/6795f7078072ba378d5bc6f69b3ce6187c57bddb"
+    },
+    {
+      "id": "yinli",
+      "name": "音理（邻家的女孩）",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "真实创意工坊样本（取自上游 Discussions 分享）：《星空列车与白的旅行》的邻家女孩音理，治愈系日常恋爱向角色卡，陪你开启星空列车之旅",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-yinli-0.1.0/character-yinli-0.1.0.zip",
+      "sha256": "bff154e00ec879929bc4b89c5bb9a5fb1be810642994b5c4d3096f73b52f5e95",
+      "size": 13921862,
+      "manifest": {
+        "id": "yinli",
+        "name": "音理（邻家的女孩）",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "真实创意工坊样本（取自上游 Discussions 分享）：《星空列车与白的旅行》的邻家女孩音理，治愈系日常恋爱向角色卡，陪你开启星空列车之旅",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "恋爱",
+            "日常",
+            "galgame",
+            "治愈"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/d513c6d7e433ca306a62ac5d556233ba8b501d66"
     }
   ]
 }
