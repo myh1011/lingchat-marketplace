@@ -18,11 +18,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      # ── 1. 变更包检测（只审 PR 实际改动的包）──
+      # ── 1. 变更包检测（只审 PR 实际改动的包，按 base.sha diff 覆盖多 commit PR）──
       - name: Detect changed packages
         id: changed
         run: |
-          CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^registry/' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          CHANGED=$(git diff --name-only "$BASE_SHA" HEAD | grep '^registry/' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
           echo "CHANGED=$CHANGED"
           echo "pkgs=$CHANGED" >> "$GITHUB_OUTPUT"
           if [ -z "$CHANGED" ]; then
@@ -54,16 +55,16 @@ jobs:
           EOF
           exit 0
 
-      # ── 3. 机器未通过 → 关 PR ──
-      - name: Reject on machine failure
+      # ── 3. 机器未通过 → 挂起等人工（不自动关闭）──
+      - name: "Hold for human: machine failure (fail-closed)"
         if: env.MACHINE_RC == '1'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "" >> /tmp/machine-comment.md
-          echo "> 一票否决规则命中，PR 已自动关闭。修复后重新提交（push 会重新触发审核）。" >> /tmp/machine-comment.md
+          echo "> ⚠️ 一票否决规则命中，**fail-closed：PR 挂起等人工复核**，不会被自动合并/关闭。修复后重新 push 会重新触发审核；人工复核后手动处理（合并/关闭）。" >> /tmp/machine-comment.md
           gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/machine-comment.md
-          gh pr close "${{ github.event.pull_request.number }}"
+          gh pr edit "${{ github.event.pull_request.number }}" --add-label "hold-for-human" || true
           exit 0
 
       # ── 4. LLM 语义审查（硅基流动，结构化 verdict，fail-closed）──
@@ -125,15 +126,15 @@ jobs:
           echo "> 请按 findings 修改后重新 push，将自动重新审核。" >> /tmp/llm-comment.md
           gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/llm-comment.md
 
-      - name: "Gate: reject → close PR"
+      - name: "Gate: reject → hold for human (fail-closed)"
         if: env.MACHINE_RC == '0' && env.VERDICT == 'reject'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "" >> /tmp/llm-comment.md
-          echo "> 审核判定为恶意/严重违规，PR 已自动关闭。" >> /tmp/llm-comment.md
+          echo "> ⚠️ 审核判定为恶意/严重违规，**fail-closed：PR 挂起等人工复核**，不会被自动合并/关闭。人工复核确认后手动处理。" >> /tmp/llm-comment.md
           gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/llm-comment.md
-          gh pr close "${{ github.event.pull_request.number }}"
+          gh pr edit "${{ github.event.pull_request.number }}" --add-label "hold-for-human" || true
 
       - name: "Gate: pending → hold for human (fail-closed)"
         if: env.MACHINE_RC == '0' && env.VERDICT == 'pending'
@@ -142,3 +143,4 @@ jobs:
         run: |
           echo "> ⚠️ AI 审核无法完成（API 失败/输出不可解析），**fail-closed：PR 挂起等人工复核**，不会被自动合并。" >> /tmp/llm-comment.md
           gh pr comment "${{ github.event.pull_request.number }}" --body-file /tmp/llm-comment.md
+          gh pr edit "${{ github.event.pull_request.number }}" --add-label "hold-for-human" || true
