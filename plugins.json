@@ -57,6 +57,35 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/a35519e3cfb86a6040a120418eee87a05c265232"
+    },
+    {
+      "id": "fengxue",
+      "name": "风雪（占卜师猫娘）",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "真实创意工坊样本：一只嘴硬心软的占卜师猫娘，刀子嘴豆腐心的小可爱，常与钦灵斗嘴的日常向角色卡",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-fengxue-0.1.0/character-fengxue-0.1.0.zip",
+      "sha256": "da400f0ba8639d210a37c338243a3e0540f68ccfe7a341b076d32b67a519cad0",
+      "size": 9573318,
+      "manifest": {
+        "id": "fengxue",
+        "name": "风雪（占卜师猫娘）",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "真实创意工坊样本：一只嘴硬心软的占卜师猫娘，刀子嘴豆腐心的小可爱，常与钦灵斗嘴的日常向角色卡",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "猫娘",
+            "占卜师",
+            "日常",
+            "恋爱"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/6795f7078072ba378d5bc6f69b3ce6187c57bddb"
     }
   ]
 }
