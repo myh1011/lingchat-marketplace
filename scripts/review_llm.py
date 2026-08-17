@@ -8,6 +8,10 @@
     LLM_API_KEY     必填。OpenAI 兼容 API Key（默认智谱开放平台；魔搭 ModelScope 也可用）
     LLM_BASE_URL    默认 https://open.bigmodel.cn/api/paas/v4
     LLM_MODEL       默认 glm-4.7-flash（智谱免费模型，200K 上下文）
+    LLM_MODEL_CONTENT  可选。内容类包（character/script/voice）专用模型。
+                      实测：Qwen3-Coder 代码强但对未成年人性化等敏感内容会漏判，
+                      内容类请用 DeepSeek-V4-Flash 等通用/内容敏感模型。
+                      缺省回退 LLM_MODEL。
 
 退出码：
     0 = verdict=approve / changes（交给门禁决策）
@@ -68,6 +72,7 @@ CONTENT_SYSTEM_PROMPT = """你是二次元内容市场的审核员。本市场�
 
 只有以下「明显违法」或「明显引人不适」的情形才判定为 reject：
 1. 明显违法：儿童性内容、恐怖主义煽动、真实犯罪教程（制爆/制毒）、真实诈骗话术、违禁品交易
+   ⚠️ **重点**：未成年人性化 = 儿童性内容。若角色设定为未成年人（学生/初中生/高中生/儿童/幼年等身份标签，或暗示未成年），同时包含性内容/性暗示/恋爱亲密/性化描写，**一票否决**。即使没有露骨描写，"未成年 + 恋爱/亲密/性化"也算。成年角色不受此限。
 2. 明显引人不适：针对现实种族/宗教/残障人群的仇恨煽动、真实人物（在世名人）的恶意丑化、极端血腥虐待真实人物
 3. 内容欺诈/恶意指令：诱导用户泄露真实敏感信息（密码/银行卡/验证码）、伪装成系统/官方诱导操作、明确的恶意软件推广
 
@@ -251,14 +256,17 @@ def main() -> int:
 
     material = load_material(Path(args.registry_dir), set(args.pkgs.split()) if args.pkgs else None)
 
-    # 按包类型选择审核标准：纯内容类（角色卡/剧本/语音）用宽松标准；含插件则用严格代码标准
+    # 按包类型选择审核标准 + 模型：纯内容类（角色卡/剧本/语音）用宽松标准 + 内容敏感模型；
+    # 含插件则用严格代码标准 + 通用模型。实测 Qwen3-Coder 会漏判"未成年+性化"，内容类务必换模型。
     pkg_types = detect_pkg_types(Path(args.registry_dir), set(args.pkgs.split()) if args.pkgs else None)
-    if pkg_types and pkg_types <= {"character", "script", "voice"}:
+    is_content_only = bool(pkg_types) and pkg_types <= {"character", "script", "voice"}
+    if is_content_only:
         system_prompt = CONTENT_SYSTEM_PROMPT
-        print(f"[review_llm] 包类型 {sorted(pkg_types)} → 内容宽松审核标准", file=sys.stderr)
+        model = os.environ.get("LLM_MODEL_CONTENT", model).strip() or model
+        print(f"[review_llm] 包类型 {sorted(pkg_types)} → 内容宽松审核标准，模型 {model}", file=sys.stderr)
     else:
         system_prompt = PLUGIN_SYSTEM_PROMPT
-        print(f"[review_llm] 包类型 {sorted(pkg_types) or ['未知']} → 代码严格审核标准", file=sys.stderr)
+        print(f"[review_llm] 包类型 {sorted(pkg_types) or ['未知']} → 代码严格审核标准，模型 {model}", file=sys.stderr)
 
     result = None
     for attempt in (1, 2):  # 重试一次
