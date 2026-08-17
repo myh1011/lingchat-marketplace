@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
     paths: ['registry/**']
+  # review.yml 合并 PR 后显式触发（GITHUB_TOKEN 的 push 不会触发新 workflow）
+  repository_dispatch:
+    types: [publish-packages]
 
 permissions:
   contents: write
