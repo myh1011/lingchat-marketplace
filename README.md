@@ -17,7 +17,7 @@ scripts/
   build_package.py            # 打包统一包壳 zip + sha256
   update_registry.py          # 更新 plugins.json
 .github/workflows/
-  review.yml                  # PR 审核：机器检查 → LLM → 门禁（合并/要求修改/关闭/挂起）
+  review.yml                  # PR 审核：机器检查 → LLM → 门禁（approve 合并 / 其余挂起等人工）
   publish.yml                 # 发布链：打包 → 独立 Release → plugins.json
 plugins.json                  # 商店数据（bot 生成，客户端拉取）
 ```
@@ -29,7 +29,7 @@ plugins.json                  # 商店数据（bot 生成，客户端拉取）
 3. 提 PR → `AI Review` 工作流自动审核：
    - 机器检查一票否决（禁用模块、URL 白名单、密钥、大文件、编码载荷等）
    - LLM 语义审查（恶意意图/数据外泄/权限越界/内容合规）
-   - approve → 自动合并；changes → 留言等修改；reject → 关闭；无法判定 → 挂起等人工
+   - **approve → 自动合并；不通过（机器失败 / LLM reject / 无法判定 pending）→ fail-closed 挂起等人工**（打 `hold-for-human` 标签，不会自动合并/关闭，人工复核后手动处理）；changes → 留言等作者修改
 4. 合并后 `Publish` 工作流自动打包、发布 Release、更新 `plugins.json`
 
 ## 配置（仓库 Secrets）
