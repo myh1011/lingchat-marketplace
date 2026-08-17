@@ -19,11 +19,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      # ── 1. 变更包检测 ──
+      # ── 1. 变更包检测（优先用 review.yml dispatch 传来的包名；push 触发时用 git diff）──
       - name: Detect changed packages
         id: changed
         run: |
-          CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^registry/' | cut -d/ -f2 | sort -u || true)
+          FROM_DISPATCH="${{ github.event.client_payload.pkgs }}"
+          if [ -n "$FROM_DISPATCH" ]; then
+            CHANGED=$(echo "$FROM_DISPATCH" | tr ' ' '\n' | grep -E '^[a-z0-9_-]+$' | sort -u | tr '\n' ' ' || true)
+            echo "来源: repository_dispatch client_payload"
+          else
+            CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^registry/' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
+            echo "来源: git diff HEAD^ HEAD"
+          fi
           echo "CHANGED=$CHANGED"
           echo "pkgs=$CHANGED" >> "$GITHUB_OUTPUT"
           if [ -z "$CHANGED" ]; then
