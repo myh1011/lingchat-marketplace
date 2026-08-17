@@ -86,7 +86,13 @@ def load_material(registry_dir: Path, only: set[str] | None = None) -> str:
 
 
 def call_llm(material: str, machine_report: dict, base_url: str, api_key: str, model: str) -> str | None:
-    """调用 OpenAI 兼容 chat completions，返回响应文本；失败返回 None。"""
+    """调用 OpenAI 兼容 chat completions，返回响应文本；失败返回 None。
+
+    带指数退避重试（最多 3 次）：对抗免费模型（如智谱 glm-4.7-flash）
+    的共享速率限制（HTTP 429 / code 1302）。4xx 认证错误不重试。
+    """
+    import time as _time
+
     payload = {
         "model": model,
         "messages": [
@@ -97,22 +103,41 @@ def call_llm(material: str, machine_report: dict, base_url: str, api_key: str, m
         "max_tokens": 2048,
         "response_format": {"type": "json_object"},
     }
-    req = urllib.request.Request(
-        f"{base_url}/chat/completions",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            body = json.loads(resp.read().decode("utf-8"))
-        return body["choices"][0]["message"]["content"]
-    except Exception as e:
-        print(f"[review_llm] LLM 调用失败: {e}", file=sys.stderr)
-        return None
+
+    def attempt() -> tuple[bool, str | None]:
+        """返回 (是否终结, 文本)。终结=拿到文本或不可重试错误。"""
+        req = urllib.request.Request(
+            f"{base_url}/chat/completions",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=180) as resp:
+                body = json.loads(resp.read().decode("utf-8"))
+            return True, body["choices"][0]["message"]["content"]
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf-8", errors="replace")
+            if e.code == 429 or "1302" in detail or e.code >= 500:
+                print(f"[review_llm] 限流/服务端错误 {e.code}（第 {attempt.n} 次）: {detail[:150]}", file=sys.stderr)
+                return False, None
+            print(f"[review_llm] HTTP {e.code} 不可重试: {detail[:150]}", file=sys.stderr)
+            return True, None
+        except Exception as e:
+            print(f"[review_llm] LLM 调用失败: {e}", file=sys.stderr)
+            return False, None
+
+    attempt.n = 0
+    for delay in (5, 20, 60):  # 指数退避：5s → 20s → 60s
+        attempt.n += 1
+        done, text = attempt()
+        if done:
+            return text
+        _time.sleep(delay)
+    return None
 
 
 def parse_verdict(text: str) -> dict | None:
