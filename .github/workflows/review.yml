@@ -100,6 +100,7 @@ jobs:
         if: env.MACHINE_RC == '0' && env.VERDICT == 'approve'
         env:
           GH_TOKEN: ${{ github.token }}
+          PR_PKGS: ${{ steps.changed.outputs.pkgs }}
         run: |
           gh pr merge "${{ github.event.pull_request.number }}" --squash --delete-branch
           gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
@@ -113,9 +114,6 @@ jobs:
           EOF
           gh api "repos/${{ github.repository }}/dispatches" -X POST --input /tmp/dispatch.json \
             --jq . 2>/dev/null || echo "dispatch 触发失败（不影响合并结果，publish 可在下次 push 时兜底）"
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_PKGS: ${{ steps.changed.outputs.pkgs }}
 
       - name: "Gate: changes → comment and wait"
         if: env.MACHINE_RC == '0' && env.VERDICT == 'changes'
