@@ -36,27 +36,27 @@
       "type": "character",
       "version": "0.1.0",
       "author": "LingChat 官方角色",
-      "description": "可爱的狼娘角色卡，成人向恋爱向设定，适合 galgame 风格互动",
+      "description": "可爱的狼娘角色卡，恋爱向互动设定，适合休闲陪伴对话",
       "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-qinling-0.1.0/character-qinling-0.1.0.zip",
-      "sha256": "687436ac91607625801a868bfa7cc4db905dfd6302fdc737fc5cf77db9907f0a",
-      "size": 2715,
+      "sha256": "85a429b5166cf049ef4bbb7f04fd2fa7937cb23e3cd5313f7acd61649fd5978a",
+      "size": 2719,
       "manifest": {
         "id": "qinling",
         "name": "钦灵（狼娘）",
         "type": "character",
         "version": "0.1.0",
         "author": "LingChat 官方角色",
-        "description": "可爱的狼娘角色卡，成人向恋爱向设定，适合 galgame 风格互动",
+        "description": "可爱的狼娘角色卡，恋爱向互动设定，适合休闲陪伴对话",
         "content": {
           "category": "角色卡",
           "tags": [
-            "成人向",
             "恋爱",
-            "兽娘"
+            "兽娘",
+            "日常"
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/a35519e3cfb86a6040a120418eee87a05c265232"
     }
   ]
 }
