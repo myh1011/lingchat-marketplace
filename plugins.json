@@ -115,6 +115,35 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/d513c6d7e433ca306a62ac5d556233ba8b501d66"
+    },
+    {
+      "id": "deepseek-cohabitation",
+      "name": "DeepSeek同居物语",
+      "type": "script",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "真实创意工坊样本（取自上游 Discussions #612）：AI 少女 DeepSeek 因涨价风波穿越屏幕闯入玩家家中的搞笑日常剧情包，原生剧本格式（story_config + 5 章节）",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/script-deepseek-cohabitation-0.1.0/script-deepseek-cohabitation-0.1.0.zip",
+      "sha256": "c851e91289ea844d445ce7b8ccf08b24df5831c64ce40b43e431e2320df7580d",
+      "size": 14294,
+      "manifest": {
+        "id": "deepseek-cohabitation",
+        "name": "DeepSeek同居物语",
+        "type": "script",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "真实创意工坊样本（取自上游 Discussions #612）：AI 少女 DeepSeek 因涨价风波穿越屏幕闯入玩家家中的搞笑日常剧情包，原生剧本格式（story_config + 5 章节）",
+        "content": {
+          "category": "剧情",
+          "tags": [
+            "日常",
+            "搞笑",
+            "AI拟人",
+            "剧情"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/45731b8bbd53f26fafcdb8c946ba2c903e727285"
     }
   ]
 }
