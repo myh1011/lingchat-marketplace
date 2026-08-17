@@ -5,9 +5,9 @@
     python3 scripts/review_llm.py registry/ machine_report.json [--json-out review.json]
 
 环境变量：
-    LLM_API_KEY     必填。OpenAI 兼容 API Key（默认硅基流动）
-    LLM_BASE_URL    默认 https://api.siliconflow.cn/v1
-    LLM_MODEL       默认 Qwen/Qwen2.5-7B-Instruct（可切换强模型）
+    LLM_API_KEY     必填。OpenAI 兼容 API Key（默认智谱开放平台）
+    LLM_BASE_URL    默认 https://open.bigmodel.cn/api/paas/v4
+    LLM_MODEL       默认 glm-4.7-flash（智谱免费模型，200K 上下文）
 
 退出码：
     0 = verdict=approve / changes（交给门禁决策）
@@ -23,8 +23,8 @@ import tomllib
 import urllib.request
 from pathlib import Path
 
-DEFAULT_BASE_URL = "https://api.siliconflow.cn/v1"
-DEFAULT_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+DEFAULT_BASE_URL = "https://open.bigmodel.cn/api/paas/v4"
+DEFAULT_MODEL = "glm-4.7-flash"
 
 SYSTEM_PROMPT = """你是开源软件市场的代码与内容审核员。你的职责是判断提交上架的插件/内容是否存在以下问题：
 

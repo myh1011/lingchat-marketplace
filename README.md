@@ -36,9 +36,11 @@ plugins.json                  # 商店数据（bot 生成，客户端拉取）
 
 | Secret | 说明 |
 |---|---|
-| `LLM_API_KEY` | 必填。硅基流动 API Key（OpenAI 兼容） |
-| `LLM_BASE_URL` | 可选。默认 `https://api.siliconflow.cn/v1` |
-| `LLM_MODEL` | 可选。默认 `Qwen/Qwen2.5-7B-Instruct` |
+| `LLM_API_KEY` | 必填。智谱开放平台 API Key（[open.bigmodel.cn](https://open.bigmodel.cn) 注册，`glm-4.7-flash` 免费） |
+| `LLM_BASE_URL` | 可选。默认 `https://open.bigmodel.cn/api/paas/v4`（OpenAI 兼容） |
+| `LLM_MODEL` | 可选。默认 `glm-4.7-flash`（免费，200K 上下文） |
+
+> 兼容任意 OpenAI 兼容提供商：换 `LLM_BASE_URL` + `LLM_MODEL` + `LLM_API_KEY` 即可（如硅基流动 `https://api.siliconflow.cn/v1` / `Qwen/Qwen2.5-7B-Instruct`）。
 
 ## manifest 格式（统一包壳）
 
