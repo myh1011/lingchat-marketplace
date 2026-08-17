@@ -103,11 +103,18 @@ jobs:
           gh pr merge "${{ github.event.pull_request.number }}" --squash --delete-branch
           gh api "repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }}" \
             -f state=success -f context="ai-review" -f description="AI 审核通过，已合并"
-          # GITHUB_TOKEN 的 push 不会触发新 workflow，这里显式触发 publish（带变更包名）
-          gh api "repos/${{ github.repository }}/dispatches" -X POST \
-            -f event_type="publish-packages" \
-            -f "client_payload={\"pkgs\": \"${{ steps.changed.outputs.pkgs }}\"}" \
+          # GITHUB_TOKEN 的 push 不触发新 workflow → 显式 dispatch publish（--input 传 JSON body，-f 传不了嵌套对象）
+          python3 - <<'EOF'
+          import json, os
+          body = {"event_type": "publish-packages",
+                  "client_payload": {"pkgs": os.environ.get("PR_PKGS", "").strip()}}
+          open("/tmp/dispatch.json", "w").write(json.dumps(body))
+          EOF
+          gh api "repos/${{ github.repository }}/dispatches" -X POST --input /tmp/dispatch.json \
             --jq . 2>/dev/null || echo "dispatch 触发失败（不影响合并结果，publish 可在下次 push 时兜底）"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_PKGS: ${{ steps.changed.outputs.pkgs }}
 
       - name: "Gate: changes → comment and wait"
         if: env.MACHINE_RC == '0' && env.VERDICT == 'changes'
