@@ -37,8 +37,9 @@ BLOCKED_TOP_IMPORTS = re.compile(
     re.MULTILINE,
 )
 # 动态导入/执行：R8/R9
+# 排除方法调用（如 re.compile / obj.eval），只拦裸调用：避免误伤正则编译等安全用法
 DANGEROUS_CALLS = re.compile(
-    r"\b(importlib\s*\.|__import__\s*\(|eval\s*\(|exec\s*\(|compile\s*\()"
+    r"(importlib\s*\.|__import__\s*\(|(?<![.\w])eval\s*\(|(?<![.\w])exec\s*\(|(?<![.\w])compile\s*\()"
 )
 # RustPython 逃逸特征（R10）
 ESCAPE_PATTERNS = re.compile(
