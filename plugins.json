@@ -38,7 +38,7 @@
       "author": "LingChat 官方角色",
       "description": "可爱的狼娘角色卡，成人向恋爱向设定，适合 galgame 风格互动",
       "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-qinling-0.1.0/character-qinling-0.1.0.zip",
-      "sha256": "8248098435e275f712cfa10d2c4da2c9156518ebbb4a025078b2df8d161ece9d",
+      "sha256": "687436ac91607625801a868bfa7cc4db905dfd6302fdc737fc5cf77db9907f0a",
       "size": 2715,
       "manifest": {
         "id": "qinling",
@@ -56,7 +56,7 @@
           ]
         }
       },
-      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/d2e6523de697d4c9e7074fd942a1c24585d8041b"
+      "review_report_url": ""
     }
   ]
 }
