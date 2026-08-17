@@ -36,11 +36,19 @@ plugins.json                  # 商店数据（bot 生成，客户端拉取）
 
 | Secret | 说明 |
 |---|---|
-| `LLM_API_KEY` | 必填。智谱开放平台 API Key（[open.bigmodel.cn](https://open.bigmodel.cn) 注册，`glm-4.7-flash` 免费） |
-| `LLM_BASE_URL` | 可选。默认 `https://open.bigmodel.cn/api/paas/v4`（OpenAI 兼容） |
-| `LLM_MODEL` | 可选。默认 `glm-4.7-flash`（免费，200K 上下文） |
+| `LLM_API_KEY` | 必填。OpenAI 兼容 API Key。**推荐魔搭 ModelScope**（[modelscope.cn](https://www.modelscope.cn) 注册，绑定阿里云账号后每日 2000 次免费调用，无需实名/付费） |
+| `LLM_BASE_URL` | 可选。默认 `https://open.bigmodel.cn/api/paas/v4`（智谱）；**魔搭用 `https://api-inference.modelscope.cn/v1`** |
+| `LLM_MODEL` | 可选。默认 `glm-4.7-flash`；**魔搭推荐 `Qwen/Qwen3-Coder-30B-A3B-Instruct`** |
 
-> 兼容任意 OpenAI 兼容提供商：换 `LLM_BASE_URL` + `LLM_MODEL` + `LLM_API_KEY` 即可（如硅基流动 `https://api.siliconflow.cn/v1` / `Qwen/Qwen2.5-7B-Instruct`）。
+> 兼容任意 OpenAI 兼容提供商：换 `LLM_BASE_URL` + `LLM_MODEL` + `LLM_API_KEY` 即可（如智谱 / 魔搭 / 硅基流动 `https://api.siliconflow.cn/v1`）。
+
+### 模型选型实测（`scripts/bench_models.py`，2026-08 魔搭实测）
+
+审核场景（代码语义 + 内容合规双轨）**不需要思考模式**：
+- 机器检查已挡掉确定性恶意（禁用模块/eval/URL 白名单/大文件），LLM 只做语义兜底
+- 实测 `Qwen/Qwen3-Coder-30B-A3B-Instruct`（instruct 版）5/5 全对（含深度伪装样本：字符串拼接 + getattr 动态调用系统命令），1-2s，JSON 严格合规
+- 对比 `ZhipuAI/GLM-4.7-Flash`（思考模式）：同样能识破但慢 8 倍（~16s）且偶发空响应/429 限流；`deepseek-ai/DeepSeek-V4-Flash-0731` 可用但不稳定
+- 魔搭上的 Qwen3-Coder 为 instruct 版，`enable_thinking` 参数被忽略；review_llm.py 已兼容 `reasoning_content` 回退，将来换思考模型无需改动
 
 ## manifest 格式（统一包壳）
 
