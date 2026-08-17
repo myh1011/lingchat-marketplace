@@ -1,4 +1,34 @@
 {
   "schema_version": 1,
-  "plugins": []
+  "plugins": [
+    {
+      "id": "status_report",
+      "name": "状态汇报",
+      "type": "plugin",
+      "version": "0.1.0",
+      "author": "LingChat",
+      "description": "查询当前角色、场景与时间，一键汇报当前状态",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/plugin-status-report-0.1.0/plugin-status-report-0.1.0.zip",
+      "sha256": "581b2b67b62dc5cf71a4d2710a3badc5ed96712848662abc9c9f96d8387c0df5",
+      "size": 1001,
+      "manifest": {
+        "id": "status_report",
+        "name": "状态汇报",
+        "type": "plugin",
+        "version": "0.1.0",
+        "author": "LingChat",
+        "description": "查询当前角色、场景与时间，一键汇报当前状态",
+        "tools": [
+          {
+            "name": "status_report",
+            "description": "查询当前角色、场景、时间并返回摘要（只读，无副作用）",
+            "timeout_ms": 5000,
+            "script": "main.py",
+            "parameters": "{ \"type\":\"object\", \"properties\":{}, \"required\":[] }"
+          }
+        ]
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/251b3518469aae9cee113239e58a6a6379ae179a"
+    }
+  ]
 }
