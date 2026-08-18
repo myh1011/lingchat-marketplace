@@ -144,6 +144,35 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/45731b8bbd53f26fafcdb8c946ba2c903e727285"
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini角色娘",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "soshuinianhua421",
+      "description": "Google Gemini 的拟人化猫娘角色卡（来自上游 Discussions #634 分享）：蓝色星星裙的猫娘 AI，每句话都会带喵，自带 23 张表情立绘。立绘来源：B站 ZipZipPipe",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-gemini-0.1.0/character-gemini-0.1.0.zip",
+      "sha256": "1f63c0d13725203b178147c0ebd1eb6c080c59d8824018e873578dfbcf5a3c95",
+      "size": 7015863,
+      "manifest": {
+        "id": "gemini",
+        "name": "Gemini角色娘",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "soshuinianhua421",
+        "description": "Google Gemini 的拟人化猫娘角色卡（来自上游 Discussions #634 分享）：蓝色星星裙的猫娘 AI，每句话都会带喵，自带 23 张表情立绘。立绘来源：B站 ZipZipPipe",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "猫娘",
+            "AI娘",
+            "日常",
+            "恋爱"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/0c50119851130368a65c4fa41d5dba2cd4297758"
     }
   ]
 }
