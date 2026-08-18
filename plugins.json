@@ -173,6 +173,64 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/0c50119851130368a65c4fa41d5dba2cd4297758"
+    },
+    {
+      "id": "yukari",
+      "name": "早濑优香（碧蓝档案）",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "Alex1739",
+      "description": "《碧蓝档案》千年科学学园研讨会会计——早濑优香。认真负责又容易害羞的数学鬼才，对 Sensei 怀着深厚感情的少女。含 20 张表情立绘。来自上游 Discussions #199 分享（原作者：Alex1739；感谢文本、总督的协助）。",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-yukari-0.1.0/character-yukari-0.1.0.zip",
+      "sha256": "c0fa13d0287e7cbdd79645878158207752b915619ff2bfcd88870f27864562f8",
+      "size": 12017010,
+      "manifest": {
+        "id": "yukari",
+        "name": "早濑优香（碧蓝档案）",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "Alex1739",
+        "description": "《碧蓝档案》千年科学学园研讨会会计——早濑优香。认真负责又容易害羞的数学鬼才，对 Sensei 怀着深厚感情的少女。含 20 张表情立绘。来自上游 Discussions #199 分享（原作者：Alex1739；感谢文本、总督的协助）。",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "碧蓝档案",
+            "恋爱",
+            "日常",
+            "学生"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/488c3d9a451ef450ca68d9fce575db6f0ca1add4"
+    },
+    {
+      "id": "yukari-sleepwear",
+      "name": "早濑优香（睡衣版）",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "Alex1739",
+      "description": "《碧蓝档案》早濑优香的活动睡衣版角色卡，含 21 张表情立绘（含'安心'表情）。来自上游 Discussions #199 分享（原作者：Alex1739；感谢文本、总督的协助）。",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-yukari-sleepwear-0.1.0/character-yukari-sleepwear-0.1.0.zip",
+      "sha256": "f09d01b7929bb32237ab13a3377cadb755973db34e10df98152c98141ff66fd5",
+      "size": 15758292,
+      "manifest": {
+        "id": "yukari-sleepwear",
+        "name": "早濑优香（睡衣版）",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "Alex1739",
+        "description": "《碧蓝档案》早濑优香的活动睡衣版角色卡，含 21 张表情立绘（含'安心'表情）。来自上游 Discussions #199 分享（原作者：Alex1739；感谢文本、总督的协助）。",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "碧蓝档案",
+            "恋爱",
+            "睡衣",
+            "活动"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/488c3d9a451ef450ca68d9fce575db6f0ca1add4"
     }
   ]
 }
