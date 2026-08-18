@@ -76,23 +76,23 @@ jobs:
           PKGS: ${{ steps.changed.outputs.pkgs }}
         run: |
           for pkg in $PKGS; do
-            PKG="$pkg" python3 - <<'PYEOF'
-import json, os
-pkg = os.environ["PKG"]
-meta = json.load(open(f"/tmp/meta/{pkg}.json"))
-build = {
-    "id": meta["id"],
-    "version": meta["version"],
-    "sha256": meta["sha256"],
-    "size": meta["size"],
-    "download_url": meta["download_url"],
-    "review_report_url": f"https://github.com/${{ github.repository }}/commit/${{ github.sha }}",
-}
-with open(f"registry/{pkg}/build.json", "w", encoding="utf-8") as f:
-    json.dump(build, f, ensure_ascii=False, indent=2)
-    f.write("\n")
-print(f"[build.json] {pkg}@{meta['version']} sha256={meta['sha256'][:12]}...")
-PYEOF
+            PKG="$pkg" python3 - <<'PYEOF' || exit 1
+          import json, os
+          pkg = os.environ["PKG"]
+          meta = json.load(open(f"/tmp/meta/{pkg}.json"))
+          build = {
+              "id": meta["id"],
+              "version": meta["version"],
+              "sha256": meta["sha256"],
+              "size": meta["size"],
+              "download_url": meta["download_url"],
+              "review_report_url": f"https://github.com/${{ github.repository }}/commit/${{ github.sha }}",
+          }
+          with open(f"registry/{pkg}/build.json", "w", encoding="utf-8") as f:
+              json.dump(build, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+          print(f"[build.json] {pkg}@{meta['version']} sha256={meta['sha256'][:12]}...")
+          PYEOF
           done
 
       # ── 4. 提交 plugins.json + build.json（[skip ci] 防止递归触发）──
