@@ -105,3 +105,16 @@ jobs:
           git add plugins.json registry/*/build.json
           git commit -m "chore: update plugins.json + build.json [skip ci]" || echo "无变化"
           git push
+
+      # ── 5. 上传 plugins.json 为 Release 产物（客户端绕过 jsDelivr 缓存）──
+      # 客户端 trees API 限流/失败时优先从 Release 拉 plugins.json（永远实时）。
+      # registry 标签每次覆盖（--clobber），releases/latest 解析到最新一次发布。
+      - name: Upload plugins.json to Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create registry plugins.json \
+            --title "Market Registry" \
+            --notes "最新 plugins.json（客户端动态索引的实时回退源）" \
+            2>/dev/null \
+          || gh release upload registry plugins.json --clobber
