@@ -1,0 +1,10 @@
+id = "yukari-sleepwear"
+name = "早濑优香（睡衣版）"
+type = "character"
+version = "0.1.0"
+author = "Alex1739"
+description = "《碧蓝档案》早濑优香的活动睡衣版角色卡，含 21 张表情立绘（含'安心'表情）。来自上游 Discussions #199 分享（原作者：Alex1739；感谢文本、总督的协助）。"
+
+[content]
+category = "角色卡"
+tags = ["碧蓝档案", "恋爱", "睡衣", "活动"]

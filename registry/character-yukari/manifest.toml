@@ -1,0 +1,10 @@
+id = "yukari"
+name = "早濑优香（碧蓝档案）"
+type = "character"
+version = "0.1.0"
+author = "Alex1739"
+description = "《碧蓝档案》千年科学学园研讨会会计——早濑优香。认真负责又容易害羞的数学鬼才，对 Sensei 怀着深厚感情的少女。含 20 张表情立绘。来自上游 Discussions #199 分享（原作者：Alex1739；感谢文本、总督的协助）。"
+
+[content]
+category = "角色卡"
+tags = ["碧蓝档案", "恋爱", "日常", "学生"]

@@ -99,3 +99,9 @@ python3 scripts/update_registry.py --meta <meta.json>
 # LLM 审查（需 LLM_API_KEY）
 LLM_API_KEY=xxx python3 scripts/review_llm.py registry/ <machine-report.json>
 ```
+
+## 上游内容收录
+
+部分内容来自上游 [SlimeBoyOwO/LingChat Discussions](https://github.com/SlimeBoyOwO/LingChat/discussions) 的作者分享，已保留原作者说明与致谢。
+
+详见：[docs/upstream-content.md](docs/upstream-content.md)（收录索引：来源链接、原作者、使用说明、致谢等）。
