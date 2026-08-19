@@ -56,7 +56,8 @@
           ]
         }
       },
-      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/a35519e3cfb86a6040a120418eee87a05c265232"
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/a35519e3cfb86a6040a120418eee87a05c265232",
+      "delisted": true
     },
     {
       "id": "fengxue",
@@ -85,7 +86,8 @@
           ]
         }
       },
-      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/6795f7078072ba378d5bc6f69b3ce6187c57bddb"
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/6795f7078072ba378d5bc6f69b3ce6187c57bddb",
+      "delisted": true
     },
     {
       "id": "yinli",
