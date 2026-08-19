@@ -1,0 +1,10 @@
+id = "toripoka"
+name = "特莉波卡"
+type = "character"
+version = "0.1.0"
+author = "LingChat 创意工坊"
+description = "《犹格索托斯的庭院》见习死神特莉波卡"
+
+[content]
+category = "角色卡"
+tags = ['犹格索托斯的庭院', '角色']

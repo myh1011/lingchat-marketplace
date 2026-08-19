@@ -293,6 +293,168 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/3fd8281961dba4343066805158d8c7c0e01fb1b1"
+    },
+    {
+      "id": "amiya",
+      "name": "阿米娅",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "《明日方舟》阿米娅，罗德岛的领导者",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-amiya-0.1.0/amiya-0.1.0.zip",
+      "sha256": "2557877e918d9b9853fe6b52249434699b2fc3f6a2a3d5f0d62ae919699eb91b",
+      "size": 4126305,
+      "manifest": {
+        "id": "amiya",
+        "name": "阿米娅",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "《明日方舟》阿米娅，罗德岛的领导者",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "明日方舟",
+            "角色"
+          ]
+        }
+      },
+      "review_report_url": ""
+    },
+    {
+      "id": "nukitashi",
+      "name": "琴寄文乃",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "《住在拔作岛上的贫乳该如何是要才好？》琴寄文乃",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-nukitashi-0.1.0/nukitashi-0.1.0.zip",
+      "sha256": "1e216b756e3932c5b69e57e7fc10261177d1ccc119fc8892e323fbb89426a94b",
+      "size": 7660625,
+      "manifest": {
+        "id": "nukitashi",
+        "name": "琴寄文乃",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "《住在拔作岛上的贫乳该如何是要才好？》琴寄文乃",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "拔作岛",
+            "角色"
+          ]
+        }
+      },
+      "review_report_url": ""
+    },
+    {
+      "id": "demule",
+      "name": "阿娜伊斯·德穆兰",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "《三角洲行动》哈夫克集团全球安全总监阿娜伊斯·德穆兰",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-demule-0.1.0/demule-0.1.0.zip",
+      "sha256": "368c626eb90d793afd7e7b0fe389a716c3e91e53dd7181a4df488bb5877ec06f",
+      "size": 8226525,
+      "manifest": {
+        "id": "demule",
+        "name": "阿娜伊斯·德穆兰",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "《三角洲行动》哈夫克集团全球安全总监阿娜伊斯·德穆兰",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "三角洲行动",
+            "角色"
+          ]
+        }
+      },
+      "review_report_url": ""
+    },
+    {
+      "id": "hina",
+      "name": "空崎日奈",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "《碧蓝档案》格黑娜风纪委员会长空崎日奈",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-hina-0.1.0/hina-0.1.0.zip",
+      "sha256": "51186215f437ed0e32b499857b188d4e5cee182b49cf1f9f95ce03ac7ea5d27c",
+      "size": 69311669,
+      "manifest": {
+        "id": "hina",
+        "name": "空崎日奈",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "《碧蓝档案》格黑娜风纪委员会长空崎日奈",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "碧蓝档案",
+            "角色"
+          ]
+        }
+      },
+      "review_report_url": ""
+    },
+    {
+      "id": "mika",
+      "name": "圣园未花",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "《碧蓝档案》圣三一茶话会圣园未花",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-mika-0.1.0/mika-0.1.0.zip",
+      "sha256": "cfa27d22a870594566b1340833420d37531eb8ca0657db451b317c66e058a774",
+      "size": 165402423,
+      "manifest": {
+        "id": "mika",
+        "name": "圣园未花",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "《碧蓝档案》圣三一茶话会圣园未花",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "碧蓝档案",
+            "角色"
+          ]
+        }
+      },
+      "review_report_url": ""
+    },
+    {
+      "id": "toripoka",
+      "name": "特莉波卡",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "LingChat 创意工坊",
+      "description": "《犹格索托斯的庭院》见习死神特莉波卡",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-toripoka-0.1.0/toripoka-0.1.0.zip",
+      "sha256": "58c2852d34b3fc6b1074f6047fe24cbfa3ff91bb0714869537046fce645a4d83",
+      "size": 13883166,
+      "manifest": {
+        "id": "toripoka",
+        "name": "特莉波卡",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "LingChat 创意工坊",
+        "description": "《犹格索托斯的庭院》见习死神特莉波卡",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "犹格索托斯的庭院",
+            "角色"
+          ]
+        }
+      },
+      "review_report_url": ""
     }
   ]
 }

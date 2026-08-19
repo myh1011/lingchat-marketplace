@@ -1,0 +1,10 @@
+id = "demule"
+name = "阿娜伊斯·德穆兰"
+type = "character"
+version = "0.1.0"
+author = "LingChat 创意工坊"
+description = "《三角洲行动》哈夫克集团全球安全总监阿娜伊斯·德穆兰"
+
+[content]
+category = "角色卡"
+tags = ['三角洲行动', '角色']

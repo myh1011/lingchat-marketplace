@@ -1,0 +1,10 @@
+id = "mika"
+name = "圣园未花"
+type = "character"
+version = "0.1.0"
+author = "LingChat 创意工坊"
+description = "《碧蓝档案》圣三一茶话会圣园未花"
+
+[content]
+category = "角色卡"
+tags = ['碧蓝档案', '角色']

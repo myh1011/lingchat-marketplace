@@ -1,0 +1,10 @@
+id = "hina"
+name = "空崎日奈"
+type = "character"
+version = "0.1.0"
+author = "LingChat 创意工坊"
+description = "《碧蓝档案》格黑娜风纪委员会长空崎日奈"
+
+[content]
+category = "角色卡"
+tags = ['碧蓝档案', '角色']
