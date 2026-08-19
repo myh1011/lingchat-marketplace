@@ -25,12 +25,57 @@ plugins.json                  # 商店数据（bot 生成，客户端拉取）
 ## 提交上架流程
 
 1. fork 本仓库
-2. 添加 `registry/<type>-<id>/`（`manifest.toml` + `payload/`），遵守统一包壳格式
-3. 提 PR → `AI Review` 工作流自动审核：
+2. 在 `registry/` 目录下添加 `<type>-<id>/` 文件夹(e.g. character-qinling) 。本项目支持的 <type> 有 [character,plugin,script，voice]
+3. 在你刚创建的 `registry/<type>-<id>/` 文件夹中创建 `manifest.toml` 文件，和 `payload/` 文件夹。
+4. 在 `manifest.toml` 根据你要上架的内容情况严格按照以下格式填写：
+```toml
+id = "tavily"                  # 你的内容的id，不得与其他内容重复,只允许包含：字母数字下划线连字符
+name = "Tavily 搜索"
+type = "plugin"                # plugin / character / script / voice
+version = "0.1.0"              # semver，必须递增
+author = "LingChat"
+description = "基于 Tavily 的联网搜索与网页提取"
+
+# 网络白名单（视情况可选）：审核比对 + 客户端运行时强制共用，在你的插件会调用外部api时添加
+[[network]]
+host = "api.tavily.com"
+# paths = ["/search"]         # 可选限路径
+# https_only = true           # 默认 true
+
+# call_tool（视情况可选） 写工具声明（读工具免声明）
+# [[permissions.tools]]
+# name = "memory_add_note"
+
+# 大文件声明（视情况可选）（>5MB 不进 git，bot 审核下载校验后转存 Releases）
+# [[assets]]
+# name = "model.onnx"
+# url = "https://github.com/author/repo/releases/download/v1/model.onnx"
+# sha256 = "9f2c..."
+# size = 52428800
+
+# 工具声明(视情况可选)（plugin 类型）
+[[tools]]
+name = "tavily_search"
+description = "联网搜索，返回相关网页摘要与链接"
+timeout_ms = 30000
+script = "tavily.py"
+parameters = '{ "type":"object", "properties":{ "query":{"type":"string"} }, "required":["query"] }'
+```
+5. 如果你是第一次上架：
+
+      1.你要上架的是 `角色` 请看： https://github.com/zhangzm0/lingchat-marketplace/tree/main/registry/character-qinling
+   
+      2.你要上架的是 `插件` 请看： https://github.com/zhangzm0/lingchat-marketplace/tree/main/registry/plugin-status-report
+   
+      3.你要上架的是 `脚本` 请看： https://github.com/zhangzm0/lingchat-marketplace/tree/main/registry/script-deepseek-cohabitation
+   
+6. 在你所创建的 `payload/` 文件夹中严格根据上面的示例格式添加你所需上传的内容
+7. 提交 PR
+8. `AI Review` 工作流自动审核机制如下：
    - 机器检查一票否决（禁用模块、URL 白名单、密钥、大文件、编码载荷等）
    - LLM 语义审查（恶意意图/数据外泄/权限越界/内容合规）
    - **approve → 自动合并；不通过（机器失败 / LLM reject / 无法判定 pending）→ fail-closed 挂起等人工**（打 `hold-for-human` 标签，不会自动合并/关闭，人工复核后手动处理）；changes → 留言等作者修改
-4. 合并后 `Publish` 工作流自动打包、发布 Release、更新 `plugins.json`
+
 
 ## 配置（仓库 Secrets）
 
@@ -49,42 +94,6 @@ plugins.json                  # 商店数据（bot 生成，客户端拉取）
 - 实测 `Qwen/Qwen3-Coder-30B-A3B-Instruct`（instruct 版）5/5 全对（含深度伪装样本：字符串拼接 + getattr 动态调用系统命令），1-2s，JSON 严格合规
 - 对比 `ZhipuAI/GLM-4.7-Flash`（思考模式）：同样能识破但慢 8 倍（~16s）且偶发空响应/429 限流；`deepseek-ai/DeepSeek-V4-Flash-0731` 可用但不稳定
 - 魔搭上的 Qwen3-Coder 为 instruct 版，`enable_thinking` 参数被忽略；review_llm.py 已兼容 `reasoning_content` 回退，将来换思考模型无需改动
-
-## manifest 格式（统一包壳）
-
-```toml
-id = "tavily"                  # 唯一，字母数字下划线连字符
-name = "Tavily 搜索"
-type = "plugin"                # plugin / character / script / voice
-version = "0.1.0"              # semver，必须递增
-author = "LingChat"
-description = "基于 Tavily 的联网搜索与网页提取"
-
-# 网络白名单：审核比对 + 客户端运行时强制共用
-[[network]]
-host = "api.tavily.com"
-# paths = ["/search"]         # 可选限路径
-# https_only = true           # 默认 true
-
-# call_tool 写工具声明（读工具免声明）
-# [[permissions.tools]]
-# name = "memory_add_note"
-
-# 大文件声明（>5MB 不进 git，bot 审核下载校验后转存 Releases）
-# [[assets]]
-# name = "model.onnx"
-# url = "https://github.com/author/repo/releases/download/v1/model.onnx"
-# sha256 = "9f2c..."
-# size = 52428800
-
-# 工具声明（plugin 类型）
-[[tools]]
-name = "tavily_search"
-description = "联网搜索，返回相关网页摘要与链接"
-timeout_ms = 30000
-script = "tavily.py"
-parameters = '{ "type":"object", "properties":{ "query":{"type":"string"} }, "required":["query"] }'
-```
 
 ## 本地验证
 
