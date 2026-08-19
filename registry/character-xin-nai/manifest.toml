@@ -1,0 +1,10 @@
+id = "xin-nai"
+name = "心奈（碧蓝档案）"
+type = "character"
+version = "0.1.0"
+author = "SlimeBoyOwO"
+description = "《碧蓝档案》千年科学学园的心奈教官，成熟的淑女。含常服 + 泳装两套服装，共 40 张立绘（含触摸区域配置）。来自上游 Discussions #611 分享。"
+
+[content]
+category = "角色卡"
+tags = ["碧蓝档案", "恋爱", "日常", "泳装", "多服装"]

@@ -1,0 +1,10 @@
+id = "seya"
+name = "百合园圣娅（碧蓝档案）"
+type = "character"
+version = "0.1.0"
+author = "mikanamaika"
+description = "《碧蓝档案》圣三一综合学园「茶会」领袖——百合园圣娅，表面疏离实则重视同伴的金发狐娘。含 20 张立绘。来自上游 Discussions #157 分享。"
+
+[content]
+category = "角色卡"
+tags = ["碧蓝档案", "恋爱", "日常", "兽娘", "学生领袖"]
