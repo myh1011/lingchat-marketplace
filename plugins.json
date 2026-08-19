@@ -231,6 +231,66 @@
         }
       },
       "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/488c3d9a451ef450ca68d9fce575db6f0ca1add4"
+    },
+    {
+      "id": "seya",
+      "name": "百合园圣娅（碧蓝档案）",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "mikanamaika",
+      "description": "《碧蓝档案》圣三一综合学园「茶会」领袖——百合园圣娅，表面疏离实则重视同伴的金发狐娘。含 20 张立绘。来自上游 Discussions #157 分享。",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-seya-0.1.0/character-seya-0.1.0.zip",
+      "sha256": "600d175827bc73089573c02569318fdaa9950f2a39b39127c6e143e2cf1c6581",
+      "size": 29800072,
+      "manifest": {
+        "id": "seya",
+        "name": "百合园圣娅（碧蓝档案）",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "mikanamaika",
+        "description": "《碧蓝档案》圣三一综合学园「茶会」领袖——百合园圣娅，表面疏离实则重视同伴的金发狐娘。含 20 张立绘。来自上游 Discussions #157 分享。",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "碧蓝档案",
+            "恋爱",
+            "日常",
+            "兽娘",
+            "学生领袖"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/3fd8281961dba4343066805158d8c7c0e01fb1b1"
+    },
+    {
+      "id": "xin-nai",
+      "name": "心奈（碧蓝档案）",
+      "type": "character",
+      "version": "0.1.0",
+      "author": "SlimeBoyOwO",
+      "description": "《碧蓝档案》千年科学学园的心奈教官，成熟的淑女。含常服 + 泳装两套服装，共 40 张立绘（含触摸区域配置）。来自上游 Discussions #611 分享。",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-xin-nai-0.1.0/character-xin-nai-0.1.0.zip",
+      "sha256": "f07e7651b828ef1a0aa0745c04da9b6164f3a222aa3289d806b4f14faea60382",
+      "size": 12925657,
+      "manifest": {
+        "id": "xin-nai",
+        "name": "心奈（碧蓝档案）",
+        "type": "character",
+        "version": "0.1.0",
+        "author": "SlimeBoyOwO",
+        "description": "《碧蓝档案》千年科学学园的心奈教官，成熟的淑女。含常服 + 泳装两套服装，共 40 张立绘（含触摸区域配置）。来自上游 Discussions #611 分享。",
+        "content": {
+          "category": "角色卡",
+          "tags": [
+            "碧蓝档案",
+            "恋爱",
+            "日常",
+            "泳装",
+            "多服装"
+          ]
+        }
+      },
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/3fd8281961dba4343066805158d8c7c0e01fb1b1"
     }
   ]
 }
