@@ -4,6 +4,14 @@
 
 设计文档：`docs/marketplace-design.md`（LingChat 仓库，[SlimeBoyOwO/LingChat#626](https://github.com/SlimeBoyOwO/LingChat/issues/626) 追踪）。
 
+## 目录
+
+- [目录结构](#目录结构)
+- [提交上架流程](#提交上架流程)
+- [配置（仓库 Secrets）](#配置仓库-secrets)
+- [本地验证](#本地验证)
+- [上游内容收录](#上游内容收录)
+
 ## 目录结构
 
 ```
@@ -25,56 +33,76 @@ plugins.json                  # 商店数据（bot 生成，客户端拉取）
 ## 提交上架流程
 
 1. fork 本仓库
-2. 在 `registry/` 目录下添加 `<type>-<id>/` 文件夹(e.g. character-qinling) 。本项目支持的 <type> 有 [character,plugin,script，voice]
+2. 在 `registry/` 目录下添加 `<type>-<id>/` 文件夹（如 `character-qinling`）。支持的 `<type>` 有 `character`、`plugin`、`script`（`voice` 预留，暂未支持）
 3. 在你刚创建的 `registry/<type>-<id>/` 文件夹中创建 `manifest.toml` 文件，和 `payload/` 文件夹。
-4. 在 `manifest.toml` 根据你要上架的内容情况严格按照以下格式填写：
+4. 按以下格式填写 `manifest.toml`（根据类型不同，字段有所区别）：
+
+**所有类型的公共字段：**
+
 ```toml
-id = "tavily"                  # 你的内容的id，不得与其他内容重复,只允许包含：字母数字下划线连字符
-name = "Tavily 搜索"
-type = "plugin"                # plugin / character / script / voice
-version = "0.1.0"              # semver，必须递增
-author = "LingChat"
-description = "基于 Tavily 的联网搜索与网页提取"
+id = "my_plugin"               # 唯一标识，不得与其他内容重复，只允许：字母、数字、下划线、连字符
+name = "我的插件"               # 显示名称
+type = "plugin"                # character / plugin / script
+version = "0.1.0"              # semver，每次上架必须递增
+author = "你的名字"
+description = "一句话描述这个内容是什么、做什么用"
+```
 
-# 网络白名单（视情况可选）：审核比对 + 客户端运行时强制共用，在你的插件会调用外部api时添加
+**plugin 类型** — 额外需要 `[[tools]]` 声明（插件可调用的写工具）：
+
+```toml
+[[tools]]
+name = "tool_name"
+description = "这个工具做什么"
+timeout_ms = 30000
+script = "main.py"
+parameters = '{ "type":"object", "properties":{ "query":{"type":"string"} }, "required":["query"] }'
+```
+
+如果插件需要访问外部 API，还要加 `[[network]]` 白名单：
+
+```toml
 [[network]]
-host = "api.tavily.com"
-# paths = ["/search"]         # 可选限路径
-# https_only = true           # 默认 true
+host = "api.example.com"
+# paths = ["/search"]         # 可选，限制只允许访问这些路径
+# https_only = true           # 默认 true，仅 HTTPS
+```
 
-# call_tool（视情况可选） 写工具声明（读工具免声明）
-# [[permissions.tools]]
-# name = "memory_add_note"
+> 示例：[plugin-status-report](registry/plugin-status-report/manifest.toml)（只读工具，无 `[[tools]]` 声明）
 
-# 大文件声明（视情况可选）（>5MB 不进 git，bot 审核下载校验后转存 Releases）
+**character / script 类型** — 额外需要 `[content]` 段（分类 + 标签）：
+
+```toml
+[content]
+category = "角色卡"             # 分类名，客户端按分类筛选
+tags = ["恋爱", "兽娘", "日常"]  # 标签，用于搜索和展示
+```
+
+> 角色示例：[character-qinling](registry/character-qinling/manifest.toml)
+> 剧本示例：[script-deepseek-cohabitation](registry/script-deepseek-cohabitation/manifest.toml)
+
+**可选字段（所有类型通用）：**
+
+```toml
+# 大文件声明（>5MB 不进 git，bot 审核下载校验后转存 Releases）
 # [[assets]]
 # name = "model.onnx"
 # url = "https://github.com/author/repo/releases/download/v1/model.onnx"
 # sha256 = "9f2c..."
 # size = 52428800
-
-# 工具声明(视情况可选)（plugin 类型）
-[[tools]]
-name = "tavily_search"
-description = "联网搜索，返回相关网页摘要与链接"
-timeout_ms = 30000
-script = "tavily.py"
-parameters = '{ "type":"object", "properties":{ "query":{"type":"string"} }, "required":["query"] }'
 ```
-5. 如果你是第一次上架：
 
-      1.你要上架的是 `角色` 请看： https://github.com/zhangzm0/lingchat-marketplace/tree/main/registry/character-qinling
-   
-      2.你要上架的是 `插件` 请看： https://github.com/zhangzm0/lingchat-marketplace/tree/main/registry/plugin-status-report
-   
-      3.你要上架的是 `脚本` 请看： https://github.com/zhangzm0/lingchat-marketplace/tree/main/registry/script-deepseek-cohabitation
-   
-6. 在你所创建的 `payload/` 文件夹中严格根据上面的示例格式添加你所需上传的内容
-7. 提交 PR
-8. `AI Review` 工作流自动审核机制如下：
+5. 在 `payload/` 文件夹中放入实际内容：
+   - **character**：角色卡文件（`settings.yml` 或 `role.txt`）+ 立绘图片
+   - **plugin**：插件脚本（如 `main.py`）
+   - **script**：剧本文件（`story_config.yaml` + 章节 yaml）
+6. 提交 PR
+7. `AI Review` 工作流自动审核：
    - 机器检查一票否决（禁用模块、URL 白名单、密钥、大文件、编码载荷等）
    - LLM 语义审查（恶意意图/数据外泄/权限越界/内容合规）
-   - **approve → 自动合并；不通过（机器失败 / LLM reject / 无法判定 pending）→ fail-closed 挂起等人工**（打 `hold-for-human` 标签，不会自动合并/关闭，人工复核后手动处理）；changes → 留言等作者修改
+   - **approve → 自动合并**
+   - **reject / pending（无法判定）→ fail-closed 挂起等人工**（打 `hold-for-human` 标签，不会自动合并或关闭，人工复核后手动处理）
+   - **changes requested → bot 留评论指出需要修改的地方**，作者修改后重新推送，再次触发审核
 
 
 ## 配置（仓库 Secrets）
