@@ -29,8 +29,9 @@ jobs:
             CHANGED=$(echo "$FROM_DISPATCH" | tr ' ' '\n' | grep -E '^[a-z0-9_-]+$' | sort -u | tr '\n' ' ' || true)
             echo "来源: repository_dispatch client_payload"
           else
-            CHANGED=$(git diff --name-only HEAD^ HEAD | grep '^registry/' | grep -v '/build.json$' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
-            echo "来源: git diff HEAD^ HEAD"
+            BEFORE="${{ github.event.before }}"
+            CHANGED=$(git diff --name-only "$BEFORE" HEAD | grep '^registry/' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
+            echo "来源: git diff $BEFORE HEAD"
           fi
           echo "CHANGED=$CHANGED"
           echo "pkgs=$CHANGED" >> "$GITHUB_OUTPUT"
