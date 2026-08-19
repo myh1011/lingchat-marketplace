@@ -1,7 +1,8 @@
 {
   "id": "mika",
   "version": "0.1.0",
-  "sha256": "cfa27d22a870594566b1340833420d37531eb8ca0657db451b317c66e058a774",
-  "size": 165402423,
-  "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-mika-0.1.0/mika-0.1.0.zip"
+  "sha256": "bf67528620dd9ec76740b5a928b147c5eed708634848d42c73d823fddcff171b",
+  "size": 165402712,
+  "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-mika-0.1.0/character-mika-0.1.0.zip",
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
 }

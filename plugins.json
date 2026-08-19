@@ -301,9 +301,9 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《明日方舟》阿米娅，罗德岛的领导者",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-amiya-0.1.0/amiya-0.1.0.zip",
-      "sha256": "37131fe48b873b9b7b23899ea637b860420c2ac5a3c0aa10283f3a3a3acac84f",
-      "size": 4128292,
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-amiya-0.1.0/character-amiya-0.1.0.zip",
+      "sha256": "d8d3bb315b5da14ed8f55448ab4de41a3b872fe69130cd857e07b937fd6798d6",
+      "size": 4128291,
       "manifest": {
         "id": "amiya",
         "name": "阿米娅",
@@ -319,7 +319,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     },
     {
       "id": "nukitashi",
@@ -328,9 +328,9 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《住在拔作岛上的贫乳该如何是要才好？》琴寄文乃",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-nukitashi-0.1.0/nukitashi-0.1.0.zip",
-      "sha256": "1e216b756e3932c5b69e57e7fc10261177d1ccc119fc8892e323fbb89426a94b",
-      "size": 7660625,
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-nukitashi-0.1.0/character-nukitashi-0.1.0.zip",
+      "sha256": "e70a24ab1da71126e4d65c2da19a2bcbc86aba7399d791e932b9ede22d0b362d",
+      "size": 7660918,
       "manifest": {
         "id": "nukitashi",
         "name": "琴寄文乃",
@@ -346,7 +346,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     },
     {
       "id": "demule",
@@ -355,9 +355,9 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《三角洲行动》哈夫克集团全球安全总监阿娜伊斯·德穆兰",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-demule-0.1.0/demule-0.1.0.zip",
-      "sha256": "368c626eb90d793afd7e7b0fe389a716c3e91e53dd7181a4df488bb5877ec06f",
-      "size": 8226525,
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-demule-0.1.0/character-demule-0.1.0.zip",
+      "sha256": "4e3b2e43aa3deefa5a44e4c05c4f7ed27454289b00b523f6d8e08d3ab66130bc",
+      "size": 8226815,
       "manifest": {
         "id": "demule",
         "name": "阿娜伊斯·德穆兰",
@@ -373,7 +373,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     },
     {
       "id": "hina",
@@ -382,9 +382,9 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《碧蓝档案》格黑娜风纪委员会长空崎日奈",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-hina-0.1.0/hina-0.1.0.zip",
-      "sha256": "51186215f437ed0e32b499857b188d4e5cee182b49cf1f9f95ce03ac7ea5d27c",
-      "size": 69311669,
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-hina-0.1.0/character-hina-0.1.0.zip",
+      "sha256": "65f65da0c28043d74cdddca47b588c0f069c375388392626c735fbd476e7590c",
+      "size": 69311956,
       "manifest": {
         "id": "hina",
         "name": "空崎日奈",
@@ -400,7 +400,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     },
     {
       "id": "mika",
@@ -409,9 +409,9 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《碧蓝档案》圣三一茶话会圣园未花",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-mika-0.1.0/mika-0.1.0.zip",
-      "sha256": "cfa27d22a870594566b1340833420d37531eb8ca0657db451b317c66e058a774",
-      "size": 165402423,
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-mika-0.1.0/character-mika-0.1.0.zip",
+      "sha256": "bf67528620dd9ec76740b5a928b147c5eed708634848d42c73d823fddcff171b",
+      "size": 165402712,
       "manifest": {
         "id": "mika",
         "name": "圣园未花",
@@ -427,7 +427,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     },
     {
       "id": "toripoka",
@@ -436,9 +436,9 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《犹格索托斯的庭院》见习死神特莉波卡",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-toripoka-0.1.0/toripoka-0.1.0.zip",
-      "sha256": "58c2852d34b3fc6b1074f6047fe24cbfa3ff91bb0714869537046fce645a4d83",
-      "size": 13883166,
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-toripoka-0.1.0/character-toripoka-0.1.0.zip",
+      "sha256": "b1bd607ca8e9ed94accb44fdda021fcd8fa5cf912751e21326748c49c6328f73",
+      "size": 13883459,
       "manifest": {
         "id": "toripoka",
         "name": "特莉波卡",
@@ -454,7 +454,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     },
     {
       "id": "taoji",
@@ -463,8 +463,8 @@
       "version": "0.1.0",
       "author": "LingChat 创意工坊",
       "description": "《碧蓝档案》千禧年游戏开发社团才羽桃井（更加聪明的桃井 #155）",
-      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-taoji-0.1.0/taoji-0.1.0.zip",
-      "sha256": "4a286a7689c30b239a63ae3f5de19e132c5cf71682a6090f5fa0c249c59626ad",
+      "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-taoji-0.1.0/character-taoji-0.1.0.zip",
+      "sha256": "729189ddd1132be4b5ebbd8aebf99cd8efe4f1c33986fbe3f5b4b7db5447dde6",
       "size": 39851476,
       "manifest": {
         "id": "taoji",
@@ -481,7 +481,7 @@
           ]
         }
       },
-      "review_report_url": ""
+      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
     }
   ]
 }
