@@ -30,6 +30,28 @@
 
 ---
 
+## 心奈（碧蓝档案）
+
+- **市场包**：`character-xin-nai`
+- **来源**：[Discussions #611 小椰子 心奈](https://github.com/SlimeBoyOwO/LingChat/discussions/611)
+- **原作者**：SlimeBoyOwO
+- **类型**：character（角色卡）
+- **内容**：《碧蓝档案》千年科学学园的心奈教官，成熟的淑女。含常服 + 泳装两套服装，共 40 张立绘（含触摸区域配置）。GSV 语音支持。
+- **标签**：GSV语音、碧蓝档案、多服装、新版
+
+---
+
+## 百合园圣娅（碧蓝档案）
+
+- **市场包**：`character-seya`
+- **来源**：[Discussions #157 芒果味小年糕———百合园圣娅](https://github.com/SlimeBoyOwO/LingChat/discussions/157)
+- **原作者**：mikanamaika
+- **类型**：character（角色卡）
+- **内容**：《碧蓝档案》圣三一综合学园「茶会」领袖——百合园圣娅。金色长发、毛茸茸狐耳，表面疏离实则极度重视同伴。含 20 张立绘。
+- **注**：泳装扩展包见 [Discussions #287](https://github.com/SlimeBoyOwO/LingChat/discussions/287)（Ratman463），作为独立服装测试文件，未包含在本包内。
+
+---
+
 ## 音理（邻家的女孩）
 
 - **市场包**：`character-yinli`
