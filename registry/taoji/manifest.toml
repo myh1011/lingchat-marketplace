@@ -1,0 +1,10 @@
+id = "taoji"
+name = "才羽桃井"
+type = "character"
+version = "0.1.0"
+author = "LingChat 创意工坊"
+description = "《碧蓝档案》千禧年游戏开发社团才羽桃井（更加聪明的桃井 #155）"
+
+[content]
+category = "角色卡"
+tags = ['碧蓝档案', '角色']
