@@ -155,8 +155,8 @@
       "author": "soshuinianhua421",
       "description": "Google Gemini 的拟人化猫娘角色卡（来自上游 Discussions #634 分享）：蓝色星星裙的猫娘 AI，每句话都会带喵，自带 23 张表情立绘。立绘来源：B站 ZipZipPipe",
       "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-gemini-0.1.0/character-gemini-0.1.0.zip",
-      "sha256": "a499409e794a392b248c404b83c092ddf57afda811595acae879e6778097afc0",
-      "size": 15904420,
+      "sha256": "8d1c14aee41c71c7d825581e4e285cf6ee7b63fa0495ab080fa54beb8b3d2850",
+      "size": 15904373,
       "manifest": {
         "id": "gemini",
         "name": "Gemini角色娘",
@@ -174,7 +174,7 @@
           ]
         }
       },
-      "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/0c50119851130368a65c4fa41d5dba2cd4297758"
+      "review_report_url": ""
     },
     {
       "id": "yukari",
@@ -464,8 +464,8 @@
       "author": "LingChat 创意工坊",
       "description": "《碧蓝档案》千禧年游戏开发社团才羽桃井（更加聪明的桃井 #155）",
       "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-taoji-0.1.0/taoji-0.1.0.zip",
-      "sha256": "a5087a2aa1e456a95833e013b8761c60eea6405df1fb67a077d9f07aea084e69",
-      "size": 39851186,
+      "sha256": "4a286a7689c30b239a63ae3f5de19e132c5cf71682a6090f5fa0c249c59626ad",
+      "size": 39851476,
       "manifest": {
         "id": "taoji",
         "name": "才羽桃井",
