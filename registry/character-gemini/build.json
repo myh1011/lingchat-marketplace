@@ -1,8 +1,8 @@
 {
   "id": "gemini",
   "version": "0.1.1",
-  "sha256": "4c939b3387752a3a5a99c7a7177f71ea125eacc86fb83c89f297b0b6f7cf8999",
-  "size": 15904374,
+  "sha256": "7dd2f1df754fb8a0a69d0b35ba4a7b8b6aff1f529624e3deaeaf43c586d585b0",
+  "size": 15904419,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-gemini-0.1.1/character-gemini-0.1.1.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/77a557acd9192c24d9a966cb45fc1c6b29500164"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

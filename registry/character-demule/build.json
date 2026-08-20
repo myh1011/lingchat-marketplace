@@ -1,8 +1,8 @@
 {
   "id": "demule",
   "version": "0.1.0",
-  "sha256": "4e3b2e43aa3deefa5a44e4c05c4f7ed27454289b00b523f6d8e08d3ab66130bc",
-  "size": 8226815,
+  "sha256": "55e0a7d272e92dfd9d93bafe2f403be7417367dc1978fd3e64362fd8d29a9584",
+  "size": 8226858,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-demule-0.1.0/character-demule-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

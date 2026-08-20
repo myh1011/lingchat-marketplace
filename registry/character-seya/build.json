@@ -1,8 +1,8 @@
 {
   "id": "seya",
   "version": "0.1.0",
-  "sha256": "600d175827bc73089573c02569318fdaa9950f2a39b39127c6e143e2cf1c6581",
-  "size": 29800072,
+  "sha256": "042c7d2a46596f3e1cf7f18f1e47c183dff96538272ca48f03e7a841f12b38f4",
+  "size": 29800406,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-seya-0.1.0/character-seya-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/3fd8281961dba4343066805158d8c7c0e01fb1b1"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

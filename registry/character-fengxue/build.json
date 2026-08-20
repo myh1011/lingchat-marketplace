@@ -1,8 +1,8 @@
 {
   "id": "fengxue",
   "version": "0.1.0",
-  "sha256": "da400f0ba8639d210a37c338243a3e0540f68ccfe7a341b076d32b67a519cad0",
-  "size": 9573318,
+  "sha256": "ce2ab959057f1d0b0e0dabd1cace530921e62e926f09f369b043f0e63f6902a9",
+  "size": 9573654,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-fengxue-0.1.0/character-fengxue-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/6795f7078072ba378d5bc6f69b3ce6187c57bddb"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

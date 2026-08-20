@@ -1,8 +1,8 @@
 {
   "id": "qinling",
   "version": "0.1.0",
-  "sha256": "85a429b5166cf049ef4bbb7f04fd2fa7937cb23e3cd5313f7acd61649fd5978a",
-  "size": 2719,
+  "sha256": "d4b7cb21e4751eb77133a64601b8eaf05b37d84186fc4650d3f64ce6ae0cfa22",
+  "size": 3054,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-qinling-0.1.0/character-qinling-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/a35519e3cfb86a6040a120418eee87a05c265232"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

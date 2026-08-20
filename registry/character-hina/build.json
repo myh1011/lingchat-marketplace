@@ -1,8 +1,8 @@
 {
   "id": "hina",
   "version": "0.1.0",
-  "sha256": "65f65da0c28043d74cdddca47b588c0f069c375388392626c735fbd476e7590c",
-  "size": 69311956,
+  "sha256": "62a269313a812f508a8bfc369e877985120a63ad022621ea20474493344193b0",
+  "size": 69312002,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-hina-0.1.0/character-hina-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

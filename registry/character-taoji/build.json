@@ -1,8 +1,8 @@
 {
   "id": "taoji",
   "version": "0.1.0",
-  "sha256": "729189ddd1132be4b5ebbd8aebf99cd8efe4f1c33986fbe3f5b4b7db5447dde6",
-  "size": 39851476,
+  "sha256": "c5e6efed64ae973e6a9ed0f54a02e3bfb69ba671b73c643584198750ca33f1e8",
+  "size": 39851521,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/character-taoji-0.1.0/character-taoji-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/f1bb53889303dddba5596b617e15a868822c09f7"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }
