@@ -1,8 +1,8 @@
 {
   "id": "deepseek-cohabitation",
   "version": "0.1.0",
-  "sha256": "c851e91289ea844d445ce7b8ccf08b24df5831c64ce40b43e431e2320df7580d",
-  "size": 14294,
+  "sha256": "f48f821d7a5fd311df3d7a5d9582656298d1983eb0c45409e130703119711023",
+  "size": 14638,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/script-deepseek-cohabitation-0.1.0/script-deepseek-cohabitation-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/45731b8bbd53f26fafcdb8c946ba2c903e727285"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }

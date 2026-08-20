@@ -1,8 +1,8 @@
 {
   "id": "status_report",
   "version": "0.1.0",
-  "sha256": "581b2b67b62dc5cf71a4d2710a3badc5ed96712848662abc9c9f96d8387c0df5",
-  "size": 1001,
+  "sha256": "2b7bf6652acdf03e44f1f3b3a4508bddbadc81341ef94e31dddb19e5fecbeece",
+  "size": 1338,
   "download_url": "https://github.com/zhangzm0/lingchat-marketplace/releases/download/plugin-status-report-0.1.0/plugin-status-report-0.1.0.zip",
-  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/251b3518469aae9cee113239e58a6a6379ae179a"
+  "review_report_url": "https://github.com/zhangzm0/lingchat-marketplace/commit/25124739d07f3aeb381005449876d2c1c50898ac"
 }
